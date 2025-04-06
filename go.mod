@@ -9,7 +9,7 @@ require (
 	github.com/buildkite/yaml v2.1.0+incompatible
 	github.com/dchest/uniuri v1.2.0
 	github.com/distribution/reference v0.6.0
-	github.com/docker/docker v28.0.4+incompatible
+	github.com/docker/docker v25.0.8+incompatible
 	github.com/drone/drone-go v1.7.1
 	github.com/drone/envsubst v1.0.3
 	github.com/drone/runner-go v1.12.0
@@ -19,6 +19,7 @@ require (
 	github.com/joho/godotenv v1.5.1
 	github.com/kelseyhightower/envconfig v1.4.0
 	github.com/mattn/go-isatty v0.0.20
+	github.com/opencontainers/image-spec v1.1.1
 	github.com/sirupsen/logrus v1.9.3
 	golang.org/x/sync v0.13.0
 )
@@ -39,12 +40,10 @@ require (
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/hashicorp/errwrap v1.0.0 // indirect
 	github.com/hashicorp/go-multierror v1.0.0 // indirect
-	github.com/moby/docker-image-spec v1.3.1 // indirect
 	github.com/moby/term v0.5.2 // indirect
 	github.com/morikuni/aec v1.0.0 // indirect
 	github.com/natessilva/dag v0.0.0-20180124060714-7194b8dcc5c4 // indirect
 	github.com/opencontainers/go-digest v1.0.0 // indirect
-	github.com/opencontainers/image-spec v1.1.1 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/xhit/go-str2duration/v2 v2.1.0 // indirect
 	go.opentelemetry.io/auto/sdk v1.1.0 // indirect

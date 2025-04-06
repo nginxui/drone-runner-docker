@@ -10,6 +10,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/docker/docker/api/types"
 	"github.com/drone-runners/drone-runner-docker/internal/docker/errors"
 	"github.com/drone-runners/drone-runner-docker/internal/docker/image"
 	"github.com/drone-runners/drone-runner-docker/internal/docker/jsonmessage"
@@ -19,7 +20,6 @@ import (
 	"github.com/drone/runner-go/registry/auths"
 
 	"github.com/docker/docker/api/types/container"
-	imageTypes "github.com/docker/docker/api/types/image"
 	"github.com/docker/docker/api/types/network"
 	"github.com/docker/docker/api/types/volume"
 	"github.com/docker/docker/client"
@@ -87,7 +87,7 @@ func (e *Docker) Setup(ctx context.Context, specv runtime.Spec) error {
 	if spec.Platform.OS == "windows" {
 		driver = "nat"
 	}
-	_, err := e.client.NetworkCreate(ctx, spec.Network.ID, network.CreateOptions{
+	_, err := e.client.NetworkCreate(ctx, spec.Network.ID, types.NetworkCreate{
 		Driver:  driver,
 		Options: spec.Network.Options,
 		Labels:  spec.Network.Labels,
@@ -231,7 +231,7 @@ func (e *Docker) Run(ctx context.Context, specv runtime.Spec, stepv runtime.Step
 
 func (e *Docker) create(ctx context.Context, spec *Spec, step *Step, output io.Writer) error {
 	// create pull options with encoded authorization credentials.
-	pullopts := imageTypes.PullOptions{}
+	pullopts := types.ImagePullOptions{}
 	if step.Auth != nil {
 		pullopts.RegistryAuth = auths.Header(
 			step.Auth.Username,
