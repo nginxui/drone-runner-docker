@@ -193,10 +193,10 @@ func (c *Compiler) Compile(ctx context.Context, args runtime.CompilerArgs) runti
 			Options: c.NetworkOpts,
 		},
 		Platform: engine.Platform{
-			OS:      pipeline.Platform.OS,
-			Arch:    pipeline.Platform.Arch,
-			Variant: pipeline.Platform.Variant,
-			Version: pipeline.Platform.Version,
+			OS:      withEnv(pipeline.Platform.OS, "DRONE_PLATFORM_OS"),
+			Arch:    withEnv(pipeline.Platform.Arch, "DRONE_PLATFORM_ARCH"),
+			Variant: withEnv(pipeline.Platform.Variant, "DRONE_PLATFORM_VARIANT"),
+			Version: withEnv(pipeline.Platform.Version, "DRONE_PLATFORM_VERSION"),
 		},
 		Volumes: []*engine.Volume{volume},
 	}
@@ -619,4 +619,11 @@ func (c *Compiler) findSecret(ctx context.Context, args runtime.CompilerArgs, na
 		return
 	}
 	return found.Data, true
+}
+
+func withEnv(value, envKey string) string {
+	if value == "" {
+		return os.Getenv(envKey)
+	}
+	return value
 }
