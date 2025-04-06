@@ -8,6 +8,7 @@ import (
 	"context"
 	"io"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/docker/docker/api/types"
@@ -245,6 +246,7 @@ func (e *Docker) create(ctx context.Context, spec *Spec, step *Step, output io.W
 		Variant:      spec.Platform.Variant,
 		OSVersion:    spec.Platform.Version,
 	}
+	pullopts.Platform = platformToString(&platform)
 
 	// automatically pull the latest version of the image if requested
 	// by the process configuration, or if the image is :latest
@@ -410,4 +412,16 @@ func (e *Docker) tail(ctx context.Context, id string, output io.Writer) error {
 		logs.Close()
 	}()
 	return nil
+}
+
+func platformToString(platform *ocispec.Platform) string {
+	builder := strings.Builder{}
+	builder.WriteString(platform.OS)
+	builder.WriteByte('/')
+	builder.WriteString(platform.Architecture)
+	if platform.Variant != "" {
+		builder.WriteByte('/')
+		builder.WriteString(platform.Variant)
+	}
+	return builder.String()
 }
