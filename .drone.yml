@@ -11,7 +11,7 @@ platform:
 
 steps:
   - name: test
-    image: golang:1.16
+    image: golang:1.23
     commands:
       - go test -cover ./...
     volumes:
@@ -19,7 +19,7 @@ steps:
         path: /go
 
   - name: build
-    image: golang:1.16
+    image: golang:1.23
     commands:
       - sh scripts/build.sh
     volumes:
@@ -43,7 +43,7 @@ pool:
 
 steps:
   - name: environment
-    image: golang:1.16
+    image: golang:1.23
     pull: always
     environment:
       CGO_ENABLED: "0"
@@ -51,7 +51,7 @@ steps:
       - go version
       - go env
   - name: build
-    image: golang:1.16
+    image: golang:1.23
     environment:
       CGO_ENABLED: "0"
     commands:
@@ -60,7 +60,7 @@ steps:
     image: plugins/docker
     pull: if-not-exists
     settings:
-      repo: drone/drone-runner-docker
+      repo: nginxui/drone-runner-docker
       auto_tag: true
       auto_tag_suffix: linux-amd64
       dockerfile: docker/Dockerfile.linux.amd64
@@ -96,7 +96,7 @@ pool:
 
 steps:
   - name: environment
-    image: golang:1.16
+    image: golang:1.23
     pull: always
     environment:
       CGO_ENABLED: "0"
@@ -104,7 +104,7 @@ steps:
       - go version
       - go env
   - name: build
-    image: golang:1.16
+    image: golang:1.23
     environment:
       CGO_ENABLED: "0"
     commands:
@@ -149,7 +149,7 @@ pool:
 
 steps:
   - name: environment
-    image: golang:1.16
+    image: golang:1.23
     pull: always
     environment:
       CGO_ENABLED: "0"
@@ -157,7 +157,7 @@ steps:
       - go version
       - go env
   - name: build
-    image: golang:1.16
+    image: golang:1.23
     environment:
       CGO_ENABLED: "0"
     commands:
@@ -203,7 +203,7 @@ pool:
 
 steps:
   - name: environment
-    image: golang:1.16
+    image: golang:1.23
     pull: always
     environment:
       CGO_ENABLED: "0"
@@ -211,7 +211,7 @@ steps:
       - go version
       - go env
   - name: build
-    image: golang:1.16
+    image: golang:1.23
     environment:
       CGO_ENABLED: "0"
     commands:

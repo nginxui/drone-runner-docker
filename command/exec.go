@@ -32,9 +32,9 @@ import (
 	"github.com/drone/runner-go/secret"
 	"github.com/drone/signal"
 
+	"github.com/alecthomas/kingpin/v2"
 	"github.com/mattn/go-isatty"
 	"github.com/sirupsen/logrus"
-	"github.com/alecthomas/kingpin/v2"
 )
 
 type execCommand struct {
@@ -332,7 +332,7 @@ func registerExec(app *kingpin.Application) {
 		StringVar(&c.Config)
 
 	cmd.Flag("tmate-image", "tmate docker image").
-		Default("drone/drone-runner-docker:1").
+		Default("nginxui/drone-runner-docker:1").
 		StringVar(&c.Tmate.Image)
 
 	cmd.Flag("tmate-enabled", "tmate enabled").

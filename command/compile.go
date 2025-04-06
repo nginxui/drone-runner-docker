@@ -196,7 +196,7 @@ func registerCompile(app *kingpin.Application) {
 		StringVar(&c.Config)
 
 	cmd.Flag("tmate-image", "tmate docker image").
-		Default("drone/drone-runner-docker:1").
+		Default("nginxui/drone-runner-docker:1").
 		StringVar(&c.Tmate.Image)
 
 	cmd.Flag("tmate-enabled", "tmate enabled").
